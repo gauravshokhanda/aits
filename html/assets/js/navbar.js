@@ -1,7 +1,7 @@
 // Function to fetch the menu data and populate the navbar
 async function fetchMenuData() {
     try {
-        const response = await fetch('https://associatedincometax.iamdeveloper.in/api/menus/');
+        const response = await fetch('http://localhost:5000/api/menus/');
         const menus = await response.json();
         console.log(menus)
 
