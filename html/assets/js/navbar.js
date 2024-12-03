@@ -23,30 +23,6 @@ const base = "http://localhost:5000/api";
 
 async function updateLogo() {
     try {
-<<<<<<< Updated upstream
-        const response = await fetch('http://localhost:5000/api/menus/');
-        const menus = await response.json();
-        console.log(menus)
-
-        const menuContainer = document.getElementById('navbar-menu');
-
-        // Clear any existing menu items before adding new ones
-        menuContainer.innerHTML = '';
-
-        // Loop through the fetched data and create menu items
-        menus.forEach(menu => {
-            const li = document.createElement('li');
-            li.classList.add('nav-item');
-
-            const a = document.createElement('a');
-            a.classList.add('nav-link');
-            a.href = menu.link;
-            a.innerText = menu.name;
-
-            li.appendChild(a);
-            menuContainer.appendChild(li);
-        });
-=======
         const response = await fetch(`${base}/settings`);
         const data = await response.json();
         // Ensure data is an array and has at least one element
@@ -56,7 +32,6 @@ async function updateLogo() {
                 img.src = data[0].logo;
             });
         }
->>>>>>> Stashed changes
     } catch (error) {
         console.error('Error fetching logo:', error);
     }
@@ -90,12 +65,17 @@ async function updateBlog() {
 
                     <h2><a href="#">${blog.title}</a></h2>
 
-                    <p class="mt-0">${blog.content} <a href="#">Click here</a></p>
+                    <div class="mt-0">${blog.content} <a href="#">Click here</a></div>
 
                     <a href="#" class="details-link">Read More <i class="las la-arrow-right"></i></a>
                 `;
                 blogContainer.appendChild(blogDiv);
             });
+
+            const blogImage=data.data[0].image;
+            console.log(blogImage)
+            const blogSectionImage = document.querySelector('#blogSectionImage .about-bg-one');
+            blogSectionImage.style.backgroundImage = `url(${blogImage})`;
 
         }
     }
